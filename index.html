@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <title>Quantum state tomography for single qutrit</title>
+</head>
+<body>
+    <header class="header-outer">
+        <div class="header-inner responsive-wrapper">
+            <div class="header-logo">
+                <img src="assets/cat.png" style="width: 221px; height: 70px;" onclick="window.location.reload();" />
+            </div>
+            <nav class="header-navigation">
+                <a href="https://kyongmini.github.io/">Home</a>
+                <button>Menu</button>
+            </nav>
+        </div>
+    </header>
+    <main class="main">
+        <div class="main-content responsive-wrapper">
+            <article class="widget">
+                <h3>Quantum State Tomography</h3>
+                <h2>What is the quantum state tomography? </h2>
+                <p><strong>Quantum State Tomography</strong> is the process by which an identical ensemble of unknown quantum states is completely characterized. A sequence of identical measurements within a series of different bases allow the reconstruction of a complete quantum state wavefunction.</p>
+                <p>Measurements of multiple types reconstruct a quantum state from different eigenbases, just as classical tomography can image a three-dimensional object by scanning it from different physical directions. Additional measurements in any single basis bring that dimension into sharper relief.</p>
+                <p>There is a way to reduce from the two-qubit tomography to single qutrit tomography as shown in the picture below, but we want <strong>a way to reduce to direct.</strong></p>
+                <p style="line-height: 70px;"><img src="assets/44matrix.png" style="width: 360px; height: 103.2px; vertical-align: middle;"> with <img src="assets/44matrix2.png" style="width: 295px; height: 151.5px; vertical-align: middle;"></p>
+                <h2>How can we get the idea for constructing directly qutrit tomography? </h2>
+                <p>In our case, by using polarizations of two photons, we'll define the basic state as below. It means that we restrict two photons that are indistinguishable in terms of spatial, spectral, or temporal parameters.</p>
+                <p style="line-height: 70px; text-align: center;"><img src="assets/basicstate.png" style="width: 208.33px; height: 102.3px; vertical-align: middle;"></p>
+                <p>By restricting two photons to a qutrit, pure polarization state of a single qutrit can be written as,</p>
+                <p style="line-height: 10px; text-align: center;"><img src="assets/state.png" style="width: 270px; height: 49.3px; vertical-align: middle;">, <img src="assets/norm1.png" style="width: 228.57px; height: 43.43px; vertical-align: middle;"></p>
+                <h2>Construct the single qutrit tomography step by step.</h2>
+                <p>To construct the tomography more accurately, let's assume that instead of counting count, we have an arbitrary test state. For example, our test state is as follows.</p>
+                <p style="line-height: 10px; text-align: center;"><img src="assets/teststate.png" style="width: 257px; height: 63.67px; vertical-align: middle;"></p>
+                <p style="font-size: 20px; margin-top: 60px;"><strong>STEP 1. Set the proper nine bases for capturing every appearance. </strong></p>
+                <p>For easier experimental implementation, nine out of 36 polarization states of two photons were selected with the condition that they capture every appearance of unknown state as below.</p>
+                <p style="line-height: 70px; text-align: center;"><img src="assets/rho1.png" style="width: 347px; height: 119px; vertical-align: middle;"></p>
+                <p>And satisfying above conditions, we select the nine bases: HH, HV, VV, HD, HR, DR, VR, DD, RR.</p>
+                <p style="line-height: 10px; text-align: center;">
+                    <img src="assets/basis1.png" style="width: 104px; height: 293.5px; vertical-align: middle;">
+                    <img src="assets/basis2.png" style="width: 135px; height: 308.5px; vertical-align: middle; margin-top: 8px;">
+                    <img src="assets/basis3.png" style="width: 125px; height: 316.5px; vertical-align: middle; margin-top: 14px;">
+                </p>
+                <p style="font-size: 20px; margin-top: 60px;"><strong>STEP 2. Construct nine measurement operators. </strong></p>
+                <p>With a set of bases, construct the measurement operators corresponding to coincidence count each other.</p>
+                <p style="font-size: 20px; margin-top: 60px;"><strong>STEP 3. Find the probability (same as finding the normalized coincidence count). </strong></p>
+                <p>If you have experimental data, coincidence count, you need this step. Because this step is just the process of getting a normalized coincidence count. We can use this.</p>
+                <p style="line-height: 10px; text-align: center;"><img src="assets/prob.png" style="width: 204.22px; height: 60.22px; vertical-align: middle;"></p>
+                <p>And it's the probability of each basis with my test state. This data is just <strong>normalized coincidence count, HH + HV + VV = 1.</strong></p>
+                <p style="line-height: 10px; text-align: center;"><img src="assets/probdata.png" style="width: 536.66px; height: 274.4px; vertical-align: middle;"></p>
+                <p style="font-size: 20px; margin-top: 60px;"><strong>STEP 4. Use Log Maximum Likelihood estimation for reconstructing density matrix. </strong></p>
+                <p>Photon follows a Poisson distribution, but by Central Limit Theorem, it follows a Gaussian distribution. <strong>To minimize,</strong></p>
+                <p style="text-align: center;"><img src="assets/mle.png" style="width: 270.472px; height: 71.66px; vertical-align: middle;"></p>
+                <p style="text-align: center;"><img src="assets/rhot.png" style="width: 127.785px; height: 58.35px; vertical-align: middle;"> with <img src="assets/tmatrix.png" style="width: 392px; height: 114.5px; vertical-align: middle;"></p>
+                <p><strong>And considering three physical constraint conditions, </strong></p>
+                <p><strong>(1) Hermiticity</strong> : The density matrix must be Hermitian.</p>
+                <p><strong>(2) Positive Semi-Definiteness</strong> : The density matrix must have non-negative eigenvalues, meaning that for any vector.</p>
+                <p><strong>(3) Trace Condition</strong> : The trace of the density matrix must be equal to one.</p>
+                <p style="font-size: 20px; margin-top: 60px;"><strong>STEP 5. Check the fidelity with density matrix of test state. </strong></p>
+                <p><strong>Fidelity is a measure of state overlap.</strong> That is, if fidelity is 1, we successfully reconstruct physical density matrix. The fidelity between 𝜌 and 𝜎,</p>
+                <p style="line-height: 10px; text-align: center;"><img src="assets/fidelity.png" style="width: 321.3px; height: 70.7px; vertical-align: middle;"></p>
+                <p>If fidelity > 1, the eigenvalue of the density matrix will be negative. In this case, we change the negative eigenvalue to 0 and renormalize the density matrix.</p>
+                <h4><strong>Let's construct single qutrit tomography with log maximum likelihood estimation!</strong></p>
+                <p>If you want to see the code according to this.. <a href="https://www.example.com">click here!</a></p>
+            </article>
+        </div>
+
+    <script src="function.js"></script>
+    <footer>
+        <p>
+            <span>Author: Kyongmini</span><br/>
+            <span>E-mail: kyongmini@khu.ac.kr</span>
+        </p>
+    </footer>
+</body>
+</html>
